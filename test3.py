@@ -1,41 +1,62 @@
 
 class Number:
+    """
+    A class to represent an integer and perform various operations on it.
+    """
 
-    def __init__(self, value):
+    def __init__(self, value: int):
+        """
+        Initialize the Number instance with an integer value.
+        Raise a TypeError if the value is not an integer.
+        """
+        if not isinstance(value, int):
+            raise TypeError("Only integers are allowed.")
         self.value = value
 
-    def double(self):
+    def double(self) -> int:
+        """Return the double of the number."""
         return self.value * 2
-    def triple(self):
+
+    def triple(self) -> int:
+        """Return the triple of the number."""
         return self.value * 3
-    def quadruple(self):
+
+    def quadruple(self) -> int:
+        """Return the quadruple of the number."""
         return self.value * 4
-    def halve(self):
+
+    def halve(self) -> float:
+        """Return half of the number."""
         return self.value / 2
-    def evaluate_1(self):
-        if self.value % 2 == 0:
-            return print("This is an even number")
-        else:
-            return print("This is an odd number")
-    def evaluate_2(self):
-        if type(self.value) == int:
-            return print("This is an integer number")
-        elif type(self.value) == float:
-            return print("This is an float number")
-        else:
-            return print("Don't know what it is")
+
+    def evaluate(self) -> dict:
+        """
+        Evaluate the number for various properties:
+        - Even or odd
+        - Divisibility by 3
+        - Positive, negative, or zero
+
+        Returns:
+            A dictionary with the evaluation results.
+        """
+        results = {
+            "even_or_odd": "even" if self.value % 2 == 0 else "odd",
+            "divisible_by_3": "divisible by 3" if self.value % 3 == 0 else "not divisible by 3",
+            "sign": (
+                "positive" if self.value > 0 else
+                "negative" if self.value < 0 else
+                "zero"
+            ),
+        }
+        return results
 
 
-number_three = Number(3)
-number_four = Number(4.5)
-string_testing = Number("testing")
 
 
-print(number_three.value)
-print(number_three.value)
-print(number_three.double)
-print(number_three.double())
+print(Number(-45).evaluate())
 
-print(string_testing.value)
-print(string_testing.evaluate_2())
+print(Number(98).evaluate())
 
+print(Number(721).evaluate())
+
+print(Number(0).evaluate())

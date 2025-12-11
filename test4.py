@@ -1,50 +1,48 @@
-class Country:
-    planet = "Earth"
+from typing import List
 
-    def __init__(self, name, capital, population, language, other_cities):
+class Country:
+    """A class to represent a country."""
+
+    # Class variable
+    PLANET = "Earth"
+
+    def __init__(self, name: str, capital: str, population: int, language: str, other_cities: List[str] = None):
+        """
+        Initialize a Country object.
+
+        Args:
+            name (str): The name of the country.
+            capital (str): The capital city of the country.
+            population (int): The population of the country.
+            language (str): The primary language spoken in the country.
+            other_cities (List[str], optional): A list of other major cities. Defaults to an empty list.
+        """
         self.name = name
         self.capital = capital
-        self.population = int(population)
+        self.population = population
         self.language = language
-        self.other_cities = []
-
-    def add_city(self, city):
-        self.other_cities.append(city)
-
-    def add_population(self, births):
-        self.population = self.population + int(births)
+        self.other_cities = other_cities if other_cities else None
+    def add_population(self, births: int):
+            self.population += births
 
 
-USA = Country("United States", "Washington DC", 320000000, "English", "")
-CRI = Country(name="Costa Rica", language = "Spanish", population = 5000000, capital = "San Jose", other_cities = "")
-
-
-print(USA.name)
-print(USA.capital)
-print(USA.population)
-print(USA.planet)
-print(USA.other_cities)
-
-print("*****Next country*****")
-
+CRI = Country("Costa Rica", "San Jose", 5000000, "Spanish")
 
 print(CRI.name)
-print(CRI.capital)
+print(CRI.language)
+print(CRI.other_cities)
+
+
+CRI.other_cities = ["Heredia", "Cartago", "Alajuela"]
+
+print(CRI.other_cities)
+
+CRI.other_cities.append("Liberia")
+
+print(CRI.other_cities)
+
 print(CRI.population)
-print(CRI.planet)
-print(CRI.other_cities)
 
-USA.add_city("Chicago")
-CRI.add_city("Heredia")
-USA.add_city("Los Angeles")
-USA.add_city("Ohio")
-USA.add_city("Phoenix")
-USA.add_city("Atlanta")
-CRI.add_city("Heredia")
-CRI.add_city("Alajuela")
+CRI.add_population(100)
 
-
-
-print("*****After adding cities*****")
-print(USA.other_cities)
-print(CRI.other_cities)
+print(CRI.population)
